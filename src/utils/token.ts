@@ -10,5 +10,6 @@ export const storeToken = async (token: string) => {
 
 export const getToken = async () => {
   const token = await AsyncStorage.getItem("accessToken");
+  console.log("토큰", token);
   return token;
 };

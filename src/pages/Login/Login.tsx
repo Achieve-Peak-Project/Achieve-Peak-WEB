@@ -3,9 +3,22 @@ import MarginTop from "../../components/MarginTop";
 import { API_URL } from "@env";
 import { useNavigation } from "@react-navigation/native";
 import { Navigation } from "../../../@types/navigation";
+import { useEffect } from "react";
+import { getToken } from "../../utils/token";
 
 export default () => {
   const navigation = useNavigation<Navigation>();
+
+  useEffect(() => {
+    const checkToken = async () => {
+      const token = await getToken();
+      if (token) {
+        navigation.navigate("Home");
+      }
+    };
+
+    checkToken();
+  }, []);
 
   const isLogin = () => {
     console.log("API_URL", API_URL);
